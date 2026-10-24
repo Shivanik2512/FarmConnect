@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
@@ -14,12 +13,17 @@ import orderRoutes from "./src/routes/order.routes.js"
 import  messageRoutes from "./src/routes/message.routes.js"
 import chatRoomRoutes from "./src/routes/chatRoom.routes.js"
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 const corsOptions = {
-  origin: "https://farm-connect-three-psi.vercel.app",
+  origin: allowedOrigins,
   credentials: true,
-  methods: ["GET", "POST", "PUT",  "PATCH" ,"DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization" , "Accept"],
-  optionsSuccessStatus: 200
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
