@@ -1,3 +1,4 @@
 node_modules
-.envserver/uploads/*.jpeg
+.env
+server/uploads/*.jpeg
 server/uploads/*.jpg
